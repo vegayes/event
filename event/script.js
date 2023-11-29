@@ -37,25 +37,27 @@ function moveRectangle(rectangle, container, speed) {
     let dx = Math.cos(radians) * speed; // x 방향으로의 속도
     let dy = Math.sin(radians) * speed; // y 방향으로의 속도
    
-    const rotationSpeed = 75;
+  //  const rotationSpeed = 75;
+    const rotationSpeed = 10;
 
     function move() {
 
-        const leftCollision = rectangle.offsetLeft < container.offsetLeft;
-        const rightCollision = rectangle.offsetLeft + rectangle.offsetWidth > container.offsetLeft + container.offsetWidth;
-        const topCollision = rectangle.offsetTop < container.offsetTop;
-        const bottomCollision = rectangle.offsetTop + rectangle.offsetHeight > container.offsetTop + container.offsetHeight;
+        const leftCollision = rectangle.offsetLeft <= container.offsetLeft;
+        const rightCollision = rectangle.offsetLeft + rectangle.offsetWidth >= container.offsetLeft + container.offsetWidth;
+        const topCollision = rectangle.offsetTop <= container.offsetTop;
+        const bottomCollision = rectangle.offsetTop + rectangle.offsetHeight >= container.offsetTop + container.offsetHeight;
     
-        if ( leftCollision || rightCollision){
+        if ( leftCollision || rightCollision) {
 
             let normal = { x: -1, y: 0 };
             let incident = { x: dx, y: dy }; // 진행 방향으로의 벡터
                             // 10 20 
             let reflection = reflect(incident, normal); //두 값을 이용해서 진행방향(반사각) 정하기 
-            dx = reflection.x;
+            dx = reflection.x; 
             dy = reflection.y;
 
-        }else if (topCollision || bottomCollision){
+        }
+        if (topCollision || bottomCollision){
            
             let normal = { x: 0, y: -1 };
             let incident = { x: dx, y: dy }; // 진행 방향으로의 벡터
@@ -123,12 +125,12 @@ document.addEventListener("DOMContentLoaded", () => {
     const rectangle2 = createRectangle(container, "rectangle2");
     const rectangle3 = createRectangle(container, "rectangle3");
 
-    moveRectangle(rectangle1, container, 4);
-    moveRectangle(rectangle2, container, 4);
-    moveRectangle(rectangle3, container, 4);
+    moveRectangle(rectangle1, container, 100);
+    moveRectangle(rectangle2, container, 100);
+    moveRectangle(rectangle3, container, 100);
 });
 
-
+/*
 function createRectangle(container, id) {
     const newPosition = getRandomPosition(container);
 
@@ -139,9 +141,9 @@ function createRectangle(container, id) {
     rectangle.style.top = `${newPosition.y}px`;
 
 
-    const dogImage = document.createElement("img");
-    dogImage.src = "images/20231127102531_11848.jfif";
-    dogImage.classList.add("dogImg"); // 클래스 추가
+    // const dogImage = document.createElement("img");
+    // dogImage.src = "images/20231127102531_11848.jfif";
+    // dogImage.classList.add("dogImg"); // 클래스 추가
 
     // id 추가
     rectangle.id = id;
@@ -151,7 +153,24 @@ function createRectangle(container, id) {
 
     return rectangle;
 }
+*/
+function createRectangle(container, id) {
+    const newPosition = getRandomPosition(container);
 
+    const rectangle = document.createElement("div");
+    rectangle.classList.add("rectangle");
+    rectangle.style.position = "absolute";
+    rectangle.style.left = `${newPosition.x}px`;
+    rectangle.style.top = `${newPosition.y}px`;
+
+    // id 추가
+    rectangle.id = id;
+
+    // container에 rectangle 추가
+    container.appendChild(rectangle);
+
+    return rectangle;
+}
 
 function displayAnswer() {
     // 기존 이미지 제거
