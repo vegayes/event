@@ -1,0 +1,28 @@
+body {
+    margin: 0;
+    overflow: hidden;
+}
+
+
+#rectangle1 {
+    
+    width: 30px;
+    height: 30px;
+    background-color: red;
+}
+
+
+#rectangle2 {
+    
+    width: 30px;
+    height: 30px;
+    background-color: blue;
+}
+
+
+#rectangle3 {
+   
+    width: 30px;
+    height: 30px;
+    background-color: green;
+}

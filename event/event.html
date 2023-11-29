@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>event 페이지</title>
+
+        <link rel="stylesheet" href="event.css">
+       
+    </head>
+    <body>
+
+        <button id = "btn" onclick="openEvent()">
+            이벤트
+        </button>
+
+        <!-- 이벤트 팝업 -->
+        <div id = "eventModalBox">
+            <div id = "eventContentArea">
+                      
+                <!-- 시작 혹은 끝에서  (모달 안에 모달)
+                <div id = "eventSubModalBox">
+                    <div>
+                        서브모달
+                    </div>
+                </div>
+                -->
+
+                <div id = "eventClose" >&times;</div>
+
+                <div class = "eventArea">
+                    <div class = "quizStatus">
+                        <div class = "timeArea">
+                            10
+                        </div>
+                        <div class = "correctArea">
+                            <div class = "correctState"></div>
+                            <div class = "correctState"></div>
+                            <div class = "correctState"></div>
+                            <div class = "correctState"></div>
+                            <div class = "correctState"></div>
+                        </div>
+                    </div>
+
+                    <div class = "quizImgArea" >
+                        <!--<div class = "correctImg">
+                            <img src="1.jpg">
+                        </div> -->
+
+                    </div>
+
+                    <div class = "quizArea">
+
+                        <div class = "quizBtnWrap">
+                            <div class = "quizBtn">
+                                <div class = "quizNum">
+                                    ①
+                                </div>
+
+                                <div class = "quizContent">
+                                    시츄
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class = "quizBtnWrap">
+                            <div class = "quizBtn">
+                                <div class = "quizNum">
+                                    ②
+                                </div>
+
+                                <div class = "quizContent">
+                                    포메라니안
+                                </div>
+                            </div>
+                        </div>
+                        <div class = "quizBtnWrap">
+                            <div class = "quizBtn">
+                                <div class = "quizNum">
+                                    ③
+                                </div>
+
+                                <div class = "quizContent">
+                                    말티즈
+                                </div>
+                            </div>
+                        </div>
+                        <div class = "quizBtnWrap">
+                            <div class = "quizBtn">
+                                <div class = "quizNum">
+                                    ④
+                                </div>
+
+                                <div class = "quizContent">
+                                    웰시코기
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class = "quizArea quizSubmit">  
+                        <div class = "quizSubmitBtn">
+                            정답제출
+                        </div>
+                    </div>
+                    
+
+
+                </div>
+            </div>
+        </div>    
+      
+        <script src ="event.js"></script>
+
+        <script src="script.js"></script>
+    </body>
+</html>
