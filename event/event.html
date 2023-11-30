@@ -6,7 +6,6 @@
         <title>event 페이지</title>
 
         <link rel="stylesheet" href="event.css">
-       
     </head>
     <body>
 
@@ -18,19 +17,19 @@
         <div id = "eventModalBox">
             <div id = "eventContentArea">
                       
-                <!-- 시작 혹은 끝에서  (모달 안에 모달)
-                <div id = "eventSubModalBox">
+                <!-- 시작 혹은 끝에서  (모달 안에 모달)-->
+                <div id = "eventSubModalBox" style = "display : none"> 
                     <div>
                         서브모달
                     </div>
                 </div>
-                -->
+                
 
                 <div id = "eventClose" >&times;</div>
 
                 <div class = "eventArea">
                     <div class = "quizStatus">
-                        <div class = "timeArea">
+                        <div class = "timeArea" id = "timer">
                             10
                         </div>
                         <div class = "correctArea">
@@ -42,70 +41,72 @@
                         </div>
                     </div>
 
-                    <div class = "quizGame" id = "container">
+                    <div class = "quizGame" id = "container" >
+                        
                         <!--<div class = "correctImg">
                             <img src="1.jpg">
                         </div> -->
-
                     </div>
 
                     <div class = "quizArea">
 
-                        <div class = "quizBtnWrap">
+                        <label class = "quizBtnWrap">
+                            <input type = "radio" name = "quizSelect" value = "1">
                             <div class = "quizBtn">
                                 <div class = "quizNum">
                                     ①
                                 </div>
 
                                 <div class = "quizContent">
-                                    시츄
+                                    퍼그
                                 </div>
                             </div>
 
-                        </div>
-                        <div class = "quizBtnWrap">
+                        </label>
+                        <label class = "quizBtnWrap">
+                            <input type = "radio" name = "quizSelect" value = "2">
                             <div class = "quizBtn">
                                 <div class = "quizNum">
                                     ②
                                 </div>
 
                                 <div class = "quizContent">
-                                    포메라니안
+                                    샤페이
                                 </div>
                             </div>
-                        </div>
-                        <div class = "quizBtnWrap">
+                        </label>
+                        <label class = "quizBtnWrap">
+                            <input type = "radio" name = "quizSelect" value = "3">
                             <div class = "quizBtn">
                                 <div class = "quizNum">
                                     ③
                                 </div>
 
                                 <div class = "quizContent">
-                                    말티즈
+                                    불독
                                 </div>
                             </div>
-                        </div>
-                        <div class = "quizBtnWrap">
+                        </label>
+                        <label class = "quizBtnWrap">
+                            <input type = "radio" name = "quizSelect" value = "4">
                             <div class = "quizBtn">
                                 <div class = "quizNum">
                                     ④
                                 </div>
 
                                 <div class = "quizContent">
-                                    웰시코기
+                                    불마스티프
                                 </div>
                             </div>
-                        </div>
+                        </label>
 
                     </div>
 
                     <div class = "quizArea quizSubmit">  
-                        <div class = "quizSubmitBtn">
+                        <div class = "quizSubmitBtn" id = "submitQuiz">
                             정답제출
                         </div>
                     </div>
-                    
-
 
                 </div>
             </div>

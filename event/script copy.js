@@ -2,15 +2,9 @@ function getRandomPosition(container) {
 
     console.log(Math.random() * (container.offsetWidth-20) + container.offsetLeft+20);
 
-    console.log("offsetWidth :" + container.offsetWidth);
-    console.log("offsetHeight :" + container.offsetHeight);
 
-
-    const x = Math.floor(Math.random() * (container.offsetWidth-100) + container.offsetLeft+70); // 50은 rectangle의 가로 크기
-    const y = Math.floor(Math.random() * (container.offsetHeight-120) + container.offsetTop+50); // 50은 rectangle의 세로 크기
-
-    console.log("x:" + x);
-    console.log("y:" + y);
+    const x = Math.floor(Math.random() * (container.offsetWidth-40) + container.offsetLeft+10); // 50은 rectangle의 가로 크기
+    const y = Math.floor(Math.random() * (container.offsetHeight-40) + container.offsetTop+10); // 50은 rectangle의 세로 크기
     return { x, y };
 }
 
@@ -32,6 +26,10 @@ function rotateRectangle(rectangle, rotationSpeed) {
     rotate();
 }
 
+
+
+
+
 function moveRectangle(rectangle, container, speed) {
     const newPosition = getRandomPosition(container);
     let angle = getRandomAngle();
@@ -39,14 +37,14 @@ function moveRectangle(rectangle, container, speed) {
     let dx = Math.cos(radians) * speed; // x 방향으로의 속도
     let dy = Math.sin(radians) * speed; // y 방향으로의 속도
    
-    const rotationSpeed = 110;
+    const rotationSpeed = 90;
 
     function move() {
 
-        const leftCollision = rectangle.offsetLeft <= container.offsetLeft+30;
-        const rightCollision = rectangle.offsetLeft + rectangle.offsetWidth >= container.offsetLeft + container.offsetWidth-30;
-        const topCollision = rectangle.offsetTop <= container.offsetTop+20;
-        const bottomCollision = rectangle.offsetTop + rectangle.offsetHeight >= container.offsetTop + container.offsetHeight-20;
+        const leftCollision = rectangle.offsetLeft <= container.offsetLeft;
+        const rightCollision = rectangle.offsetLeft + rectangle.offsetWidth >= container.offsetLeft + container.offsetWidth;
+        const topCollision = rectangle.offsetTop <= container.offsetTop;
+        const bottomCollision = rectangle.offsetTop + rectangle.offsetHeight >= container.offsetTop + container.offsetHeight;
     
         if ( leftCollision || rightCollision) {
 
@@ -97,91 +95,69 @@ function reflect(incident, normal) {
     return reflection;
 }
 
+/*
+function getNormal(rectangle, container) {
+   
+    const leftCollision = rectangle.offsetLeft < container.offsetLeft ;
+    const rightCollision = rectangle.offsetLeft + rectangle.offsetWidth > container.offsetLeft + container.offsetWidth;
+    const topCollision = rectangle.offsetTop < container.offsetTop;
+    const bottomCollision = rectangle.offsetTop + rectangle.offsetHeight > container.offsetTop + container.offsetHeight;
 
-//이미지 정보
-const quizImgData = [
-    [
-    {
-        variable : "eyes",
-        imgUrl : "images/퍼그 눈.jpg"
-    },
-    {
-        variable : "nose",
-        imgUrl : "images/퍼그 코.jpg"
-    },
-    {
-        variable : "mouth",
-        imgUrl : "images/퍼그 입.jpg"
-    },
-    {
-        variable : "leftEar",
-        imgUrl : "images/퍼그 왼쪽 귀.jpg"
-    },
-    {
-        variable : "rightEar",
-        imgUrl : "images/퍼그 오른쪽 귀.jpg"
+    if (leftCollision || rightCollision) {
+        return { x: -1, y: 0 };
+    } else if (topCollision || bottomCollision) {
+        return { x: 0, y: -1 };
     }
-    ],
-    [
-        {
-            variable : "eyes",
-            imgUrl : "images/포메 눈.jpg"
-        },
-        {
-            variable : "nose",
-            imgUrl : "images/포메 코.jpg"
-        },
-        {
-            variable : "mouth",
-            imgUrl : "images/포메 입.jpg"
-        },
-        {
-            variable : "leftEar",
-            imgUrl : "images/포메 왼쪽 귀.jpg"
-        },
-        {
-            variable : "rightEar",
-            imgUrl : "images/포메 오른쪽 귀.jpg"
-        }
-        ]
 
-];
+    // No collision, return null
+    return null;
+}
+*/
 
 
 
 document.addEventListener("DOMContentLoaded", () => {
     const container = document.getElementById("container");
-
-    const firstImageSet = quizImgData[0];
-
-    
-    firstImageSet.forEach(data => {
-        const rectangle = createRectangle(container, data.variable, data.imgUrl);
-        moveRectangle(rectangle, container, 2); // 이미지의 변수를 전달
-    });
-    
     
     // createRectangle 함수를 통해 rectangle 생성
-    //const eyes = createRectangle(container, "eyes", "images/퍼그 눈.jpg");
-    //const nose = createRectangle(container, "nose", "images/퍼그 코.jpg");
-    //const mouth = createRectangle(container, "mouth", "images/퍼그 입.jpg");
-    //const leftEar = createRectangle(container, "leftEar", "images/퍼그 왼쪽 귀.jpg");
-    //const rightEar = createRectangle(container, "rightEar", "images/퍼그 오른쪽 귀.jpg");
+    const rectangle1 = createRectangle(container, "rectangle1");
+    const rectangle2 = createRectangle(container, "rectangle2");
+    const rectangle3 = createRectangle(container, "rectangle3");
 
-
-    //moveRectangle(eyes, container, 2);
-    //moveRectangle(nose, container, 2);
-    //moveRectangle(mouth, container, 2);
-    //moveRectangle(leftEar, container, 2);
-    //moveRectangle(rightEar, container, 2);
+    moveRectangle(rectangle1, container, 2);
+    moveRectangle(rectangle2, container, 2);
+    moveRectangle(rectangle3, container, 2);
 });
 
-
-function createRectangle(container, id , imageUrl) {
+/*
+function createRectangle(container, id) {
     const newPosition = getRandomPosition(container);
 
     const rectangle = document.createElement("div");
-    rectangle.classList.add("imgSize");
+    rectangle.classList.add("rectangle");
+    rectangle.style.position = "absolute";
+    rectangle.style.left = `${newPosition.x}px`;
+    rectangle.style.top = `${newPosition.y}px`;
+
+
+    // const dogImage = document.createElement("img");
+    // dogImage.src = "images/20231127102531_11848.jfif";
+    // dogImage.classList.add("dogImg"); // 클래스 추가
+
+    // id 추가
+    rectangle.id = id;
+
+    // container에 rectangle 추가
+    container.appendChild(rectangle);
+
+    return rectangle;
+}
+*/
+function createRectangle(container, id) {
+    const newPosition = getRandomPosition(container);
+
+    const rectangle = document.createElement("div");
+    rectangle.classList.add("rectangle");
     rectangle.style.position = "absolute";
     rectangle.style.left = `${newPosition.x}px`;
     rectangle.style.top = `${newPosition.y}px`;
@@ -192,7 +168,7 @@ function createRectangle(container, id , imageUrl) {
     // 이미지 태그 생성
     const img = document.createElement("img");
     img.classList.add("dogImg");
-    img.src = imageUrl; // 이미지 URL 설정
+    img.src = "images/20231127102531_11848.jfif"; // 이미지 URL 설정
     img.alt = "Image"; // 이미지 대체 텍스트 설정 (필요에 따라 변경 가능)
 
     // 이미지 태그를 사각형(div) 안에 추가
@@ -205,15 +181,11 @@ function createRectangle(container, id , imageUrl) {
     return rectangle;
 }
 
-// 정답 이미지 주소
-const answerImageUrl = "images/퍼그.jpg";
-const quizSubmitBtn = document.querySelector(".quizSubmitBtn");
 function displayAnswer() {
     // 기존 이미지 제거
-    const dogImgs = document.querySelectorAll(".imgSize");
-    for(let i = 0; i<dogImgs.length; i++){
-        dogImgs[i].remove();   
-    }
+    document.getElementById("rectangle1").remove();
+    document.getElementById("rectangle2").remove();
+    document.getElementById("rectangle3").remove();
 
     // 새로운 이미지 생성 및 설정
     const container = document.getElementById("container");
@@ -221,28 +193,16 @@ function displayAnswer() {
     newDiv.classList.add("correctImg"); // 클래스 추가
 
     const newImg = document.createElement("img");
-    newImg.src = answerImageUrl;
+    newImg.src = "1.jpg";
 
     newDiv.appendChild(newImg); // 이미지를 div에 추가
 
     container.appendChild(newDiv); // 컨테이너에 새로운 HTML 추가
 
-    
-    quizSubmitBtn.remove();   
-
-    const quizSubmit = document.querySelector(".quizSubmit");
-
-    const nextDiv = document.createElement("div");
-    nextDiv.classList.add("quizNextBtn"); // 클래스 추가
-    nextDiv.id = "nextQuiz";
-    nextDiv.innerText = "다음 문제";
-    quizSubmit.appendChild(nextDiv);
-
-
     let opacity = 0;
     const fadeInInterval = setInterval(() => {
-        opacity += 0.2;
-        newImg.style.opacity = opacity;
+        opacity += 0.1;
+        answerImage.style.opacity = opacity;
 
         if (opacity >= 1) {
             // 나타나기 완료되면 인터벌 종료
@@ -267,33 +227,8 @@ function updateTimer() {
         clearInterval(timerInterval);
         displayAnswer();
         timerElement.innerText = '시간 종료';
-        timerElement.fontSize = '11px';
     }
 }
 
 // 1초마다 타이머 업데이트
 const timerInterval = setInterval(updateTimer, 1000);
-
-
-
-quizSubmitBtn.addEventListener("click", function(){
-    console.log("정답 제출 누름");
-    timerElement.innerText = '정답 공개';
-    clearInterval(timerInterval);
-    displayAnswer();
-
-})
-
-
-/* 다음 페이지 이동  숨겨둔 값 나오기
-function showNextQuestion(nextQuestionNumber) {
-    const currentQuestion = document.getElementById('question' + nextQuestionNumber);
-    if (currentQuestion) {
-        currentQuestion.style.display = 'block';
-    }
-    const previousQuestion = document.getElementById('question' + (nextQuestionNumber - 1));
-    if (previousQuestion) {
-        previousQuestion.style.display = 'none';
-    }
-}
-*/
