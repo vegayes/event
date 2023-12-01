@@ -2,15 +2,20 @@
 const modal = document.getElementById("eventModalBox");
 const closeModalBtn = document.getElementById("eventClose");
 
+const subModal = document.getElementById("eventSubModalBox");
+
 /* 모달창 띄우기 */
 function openEvent(){
     modal.style.display = "flex";
+    subModal.style.display = "flex";
 }
 
 /*모달창 닫기 */
 function closeEvent(){
-    modal.style.display = "none";   
+    modal.style.display = "none"; 
+    subModal.style.display = "none";  
 }
+
 
 closeModalBtn.addEventListener("click", function(){
     closeEvent();

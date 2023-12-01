@@ -6,6 +6,7 @@
         <title>event 페이지</title>
 
         <link rel="stylesheet" href="event.css">
+        <script src="https://kit.fontawesome.com/ac58eafae7.js" crossorigin="anonymous"></script>
     </head>
     <body>
 
@@ -13,16 +14,41 @@
             이벤트
         </button>
 
+
+
         <!-- 이벤트 팝업 -->
         <div id = "eventModalBox">
             <div id = "eventContentArea">
                       
                 <!-- 시작 혹은 끝에서  (모달 안에 모달)-->
-                <div id = "eventSubModalBox" style = "display : none"> 
-                    <div>
-                        서브모달
+                <div id = "eventSubModalBox" > 
+                    <div id = "eventSubModalArea">
+                        <div class = "modalContent">
+                            <div class = "iconArea">
+                                <i class="fa-solid fa-gamepad"></i>
+                            </div>
+                            <div class = "titleArea">
+                                강아지 맞추기 이벤트
+                            </div>
+                            <div class = "gameArea">
+                                제시된 사진을 보고 10초 안에 <br>강아지 견종을 맞춰보세요~
+                            </div>
+                        </div>
+                        <div class = "modalBtnArea">    
+                            <div class = "modalBtn">
+                                <div class = "settingBtn" id = "main" onclick="closeEvent()">
+                                    메인 페이지
+                                </div>
+                            </div>  
+                            <div class = "modalBtn">
+                                <div class = "settingBtn" id = "gameStart" onclick = "startGame()">
+                                    게임 시작
+                                </div>
+                            </div>  
+                        </div>
                     </div>
                 </div>
+
                 
 
                 <div id = "eventClose" >&times;</div>
@@ -33,11 +59,22 @@
                             10
                         </div>
                         <div class = "correctArea">
-                            <div class = "correctState"></div>
-                            <div class = "correctState"></div>
-                            <div class = "correctState"></div>
-                            <div class = "correctState"></div>
-                            <div class = "correctState"></div>
+                            <div class = "correctState">
+                                <img src = "images/origin.jpg">
+                            </div>
+                            <div class = "correctState">
+                                <img src = "images/origin.jpg">
+                            </div>
+                            <div class = "correctState">
+                                <img src = "images/origin.jpg">
+
+                            </div>
+                            <div class = "correctState">
+                                <img src = "images/origin.jpg">
+                            </div>
+                            <div class = "correctState">
+                                <img src = "images/origin.jpg">
+                            </div>
                         </div>
                     </div>
 
@@ -54,11 +91,9 @@
                             <input type = "radio" name = "quizSelect" value = "1">
                             <div class = "quizBtn">
                                 <div class = "quizNum">
-                                    ①
                                 </div>
 
                                 <div class = "quizContent">
-                                    퍼그
                                 </div>
                             </div>
 
@@ -67,11 +102,9 @@
                             <input type = "radio" name = "quizSelect" value = "2">
                             <div class = "quizBtn">
                                 <div class = "quizNum">
-                                    ②
                                 </div>
 
                                 <div class = "quizContent">
-                                    샤페이
                                 </div>
                             </div>
                         </label>
@@ -79,11 +112,9 @@
                             <input type = "radio" name = "quizSelect" value = "3">
                             <div class = "quizBtn">
                                 <div class = "quizNum">
-                                    ③
                                 </div>
 
                                 <div class = "quizContent">
-                                    불독
                                 </div>
                             </div>
                         </label>
@@ -91,18 +122,16 @@
                             <input type = "radio" name = "quizSelect" value = "4">
                             <div class = "quizBtn">
                                 <div class = "quizNum">
-                                    ④
                                 </div>
 
                                 <div class = "quizContent">
-                                    불마스티프
                                 </div>
                             </div>
                         </label>
 
                     </div>
 
-                    <div class = "quizArea quizSubmit">  
+                    <div class = "quizSubmit">  
                         <div class = "quizSubmitBtn" id = "submitQuiz">
                             정답제출
                         </div>
