@@ -168,6 +168,10 @@
     background-color: #fda1a1;
 }
 
+#couponBtn{
+    background-color: yellow;
+}
+
 /*************************************************
                  이벤트 display
 *************************************************/
@@ -440,5 +444,24 @@ input[type="radio"]{
 }
 
 .quizNextBtn:hover{
-    background-color: rgb(204, 204, 247);;
+    background-color: rgb(204, 204, 247);
+}
+
+.quizOverBtn{
+    flex-basis: 100%;
+    padding : 5px;
+    background-color: #FFE3E3;
+    border-radius: 5px;
+    font-size: 13px;
+    font-weight: 700;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    cursor: pointer;   
+}
+
+.quizOverBtn:hover{
+    background-color: rgb(159, 255, 154);
 }
