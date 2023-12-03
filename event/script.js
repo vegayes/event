@@ -184,7 +184,7 @@ const quizImgData = [
 
 const quizNumber = ["①", "②", "③", "④"];
 const quizChoice = [
-    ["비글", "치와와", "웰시코기" , "퍼그"],
+    ["비글", "하바나 실크 독", "웰시코기" , "퍼그"],
     ["포메라니안", "시츄", "푸들" , "시바이누"],
     ["비숑", "사모예드", "보더콜리" , "폼피츠"]
 ];
@@ -209,9 +209,9 @@ function scoreUpdate() {
         }
     }
 
-    if(scoreArr.length == quizAnswer.length){
-        scoreArr = [];
-    }
+    // if(scoreArr.length == quizAnswer.length){
+    //     scoreArr = [];
+    // }
 }
 
 /*■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
@@ -497,10 +497,11 @@ function nextQuiz() {
 ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■*/
 function doneQuiz(){
 
-    console.log("다음문제누름");
-
     subModal.style.display = "flex";
 
+    
+    const totalScore = calculateTotalScore(scoreArr);
+    console.log("게임 종료 점수:", totalScore);
 
     if (currentIndex === quizImgData.length - 1) { // 마지막 문제의 경우
         const titleArea = document.querySelector('.titleArea');
@@ -512,12 +513,11 @@ function doneQuiz(){
             gamepadIcon.classList.add('fa-circle-check');
 
 
-            const gameArea = document.querySelector('.gameArea');         
+            const gameArea = document.querySelector('.gameArea');  
+        
 
-            // 여기서 'O'의 개수를 확인하여 출력
-            const countOfO = scoreArr.filter(score => score === 'O').length;
 
-            gameArea.innerText = "User 님의 점수는 " + countOfO + "점 입니다.";
+            gameArea.innerText = "User 님의 점수는 " + totalScore + "점 입니다.";
 
             const gameStart = document.getElementById('gameStart');
             gameStart.innerText = '쿠폰 확인하러 가기';
@@ -530,6 +530,34 @@ function doneQuiz(){
 
         clearInterval(timerInterval); // 타이머 중지
 
+        const titleArea = document.querySelector('.titleArea');
+        if (titleArea) {
+            titleArea.style.display = 'none'; 
+
+            const gameArea = document.querySelector('.gameArea');
+            gameArea.innerText = '이벤트에 참여하지 않겠습니까?'
+
+            const main = document.getElementById('main');
+            main.innerText = '네';
+
+            const gameStart = document.getElementById('gameStart');
+            gameStart.removeAttribute('onclick');
+            gameStart.innerText = '아니오';
+
+            gameStart.addEventListener('click', function() {
+                subModal.style.display = "none";    
+
+                if(!(timerElement.innerText === '시간 종료 ' || timerElement.innerText === '정답 공개' )){
+                    console.log("정답 화면 아닌 경우");
+                    timerInterval = setInterval(updateTimer, 1000);
+                }
+            });
+        
+
+
+        }
+
+
     }
 
 
@@ -538,6 +566,23 @@ function doneQuiz(){
 
 
 }
+
+/*■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+                 점수 계산
+■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■*/
+function calculateTotalScore(scoreArr) {
+    let totalScore = 0;
+
+    for (let i = 0; i < scoreArr.length; i++) {
+        if (scoreArr[i] === 'O') { 
+            console.log("들어옴");
+            totalScore += 1; 
+        } 
+    }
+
+    return totalScore;
+}
+
 
 
 /*■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
@@ -627,7 +672,13 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 */
 
+document.addEventListener("DOMContentLoaded", () => {
+	openEvent();
+})
+
+
 function startGame(){
+    console.log("게임 시작");
     subModal.style.display = "none";    
 
     loadCurrentImageSet(); 
@@ -701,7 +752,3 @@ function resetGame() {
     startSubQuery();
 
 }
-
-
-
-
